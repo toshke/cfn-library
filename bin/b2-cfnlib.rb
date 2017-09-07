@@ -60,6 +60,12 @@ OptionParser.new do |opts|
 
 end.parse!
 
+# Backward compatibility with environment variable names
+
+if not ENV['AWS_ASSUME_ROLE'].nil?
+  ENV['CF_MANAGE_AWS_PROFILE'] = ENV['AWS_ASSUME_ROLE']
+end
+
 command = ARGV[0]
 
 if command.nil?

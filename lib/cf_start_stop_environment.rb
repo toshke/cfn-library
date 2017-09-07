@@ -31,7 +31,7 @@ module Base2
         @s3_client = Aws::S3::Client.new()
         @s3_bucket = ENV['SOURCE_BUCKET']
         @cf_client = Aws::CloudFormation::Client.new()
-        @credentials = Base2::AWSCredentials.get_assume_role_credentials('start_stop_environment')
+        @credentials = Base2::AWSCredentials.get_stack_operation_credentials('start_stop_environment')
         if not @credentials.nil?
           @cf_client =  Aws::CloudFormation::Client.new(credentials: @credentials)
         end
@@ -112,7 +112,7 @@ module Base2
       def start_stop_asg(cmd, asg_name)
 
         # read asg data
-        credentials = Base2::AWSCredentials.get_assume_role_credentials("stopasg_#{asg_name}")
+        credentials = Base2::AWSCredentials.get_stack_operation_credentials("stopasg_#{asg_name}")
         asg_client = Aws::AutoScaling::Client.new()
         if credentials != nil
           asg_client = Aws::AutoScaling::Client.new(credentials: credentials)
@@ -167,7 +167,7 @@ module Base2
       end
 
       def start_stop_rds(cmd, instance_id)
-        credentials = Base2::AWSCredentials.get_assume_role_credentials("startstoprds_#{instance_id}")
+        credentials = Base2::AWSCredentials.get_stack_operation_credentials("startstoprds_#{instance_id}")
         rds_client = Aws::RDS::Client.new()
         if credentials != nil
           rds_client = Aws::RDS::Client.new(credentials: credentials)

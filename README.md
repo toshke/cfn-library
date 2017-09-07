@@ -23,6 +23,14 @@ Start environment operation will
 - Starts ASG instances
 - If ASG instance was Mutli-AZ, it is converted back to Multi-AZ
 
+### Managing lifecycle of Cloud Formation stacks
+
+..... TBD ....
+
+Template location defaults to `s3://$sourceBucket/cloudformation/$projectname/$templateversion/master.json`
+Check CLI parameters for setting vairables mentioned above. To override template location, use `CF_MANAGE_TEMPLATE_LOCATION`
+environment variable. 
+
 
 ## CLI usage
 
