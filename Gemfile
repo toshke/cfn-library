@@ -1,1 +1,4 @@
-gem 'aws-sdk','>= 2.10.9'
+source 'https://rubygems.org'
+
+gem 'aws-sdk','>= 3', '<4'
+
